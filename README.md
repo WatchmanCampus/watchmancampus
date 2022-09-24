@@ -1,1 +1,1 @@
-## Watcham Catholic Charistmatic Campus Fellowship Website
+## Watchman Catholic Charistmatic Campus Fellowship Website
