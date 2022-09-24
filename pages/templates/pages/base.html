@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="welcome to the most exciting hotel in Nigeria">
 	<meta name="keywords" content="hotel,nigeria,new nigeria hotel">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'pages/css/style.css' %}">
 	{% if title %}
 	<title>Captain Vee | {{title}}</title>
 	{% else %}
@@ -21,8 +21,10 @@
 		<nav id="navbar">
 			<div class="container">
 				<div class="logo">
-				<img src="{% static 'images/preview-logo.png' %}">
-				<h1 ><a href="">Watchman Campus Fellowship</a></h1>
+					<a href="">
+					<img src="{% static 'pages/img/watchman.jpg' %}">
+<!-- 					<p>Watchman Campus Fellowship</p>
+ -->				</a>
 				</div>
 				<ul>
 					<li><a class="current" href="{% url 'home-page' %}">Home</a></li>
