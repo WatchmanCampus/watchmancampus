@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="welcome to the most exciting hotel in Nigeria">
+	<meta name="keywords" content="hotel,nigeria,new nigeria hotel">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	{% if title %}
+	<title>Captain Vee | {{title}}</title>
+	{% else %}
+	<title>Watchman Campus </title>
+	{% endif %}
+</head>
+<body>
+
+	<header>
+		<!-- Navbar Section -->
+		<nav id="navbar">
+			<div class="container">
+				<div class="logo">
+				<img src="{% static 'images/preview-logo.png' %}">
+				<h1 ><a href="">Watchman Campus Fellowship</a></h1>
+				</div>
+				<ul>
+					<li><a class="current" href="{% url 'home-page' %}">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Showcase Section -->
+		<div id="showcase">
+			<div class="container">
+				<div class="showcase-content">
+					<h1><span class="text-primary">Enjoy</span> Your Stay</h1>
+					<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore.</p>
+					<a class="btn" href="about.html">About Our Hotel</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+</body>
+</html>
