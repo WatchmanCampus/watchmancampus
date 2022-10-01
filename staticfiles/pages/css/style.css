@@ -1,3 +1,4 @@
+
 /*Reset all*/
 *{
 	margin: 0;
@@ -8,9 +9,10 @@
 
 /* Main Styling */
 html,body{
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'Roboto', sans-serif;
 	line-height: 1.7em;
 	background-color:  #EEF0F3;
+
 }
 
 a {
@@ -20,6 +22,8 @@ a {
 
 h1, h2, h3 {
 	padding-bottom: 20px;
+	font-style: normal;
+
 }
 
 p {
@@ -36,7 +40,7 @@ p {
 }
 
 .text-primary {
-	color: #f7c08a;
+	color: #376891;
 }
 
 .lead {
@@ -54,9 +58,12 @@ p {
 }
 
 .btn:hover {
-	background-color: #f7c08a;
+	background-color: #376891;
 	color: #333
 }
+
+.pd-3 { padding: 30px 0 }
+
 
 /* Navbar */
 #navbar {
@@ -106,14 +113,14 @@ p {
 
 /* Showcase */
 #showcase {
-	background: url(../img/faith.jpg) no-repeat center center/cover;
+	background: url(../img/slider2.jpg) no-repeat center center/cover;
 	height: 600px;
 
 }
 
 #showcase .showcase-content {
 	color: #fff;
-	text-align: right;
+	text-align: left;
 	padding-top: 170px;
 }
 
@@ -127,17 +134,80 @@ p {
 	line-height: 1.7em;
 }
 
+/* Features */
+
+#features {
+	margin-top: 70px;
+
+}
+
+#features h1 {
+	text-align: center;
+}
+
+.box-flex {
+	display: flex;
+}
+
+.box img {
+	width: 100%;
+}
+
+.box .box-body {
+	padding: 50px;
+}
+
+.box {
+	width: 33.3%;
+	margin-left: 33px;
+	text-align: center;
+	border: 1px #395064 solid;
+}
 
 
 
 
+/* Home Info */
+#home-info {
+	height: 500px;
+	margin-top: 70px;
+	padding: 50px 5px;
+	background-color: #fff;
+}
 
 
+#home-info .info-img {
+	width: 40%;
+	background: url('../img/wat.jpg') no-repeat;
+	min-height: 100%;
+	border-radius: 15px;
+}
+
+#home-info .info-content {
+	width: 50%;
+	height: 100%;
+	text-align: center;
+	padding: 50px 30px;
+	overflow: hidden;
+}
+
+#home-info .info-content p {
+	padding-bottom: 30px;
+}
 
 
+/* Footer */
+#main-footer ul {
+	list-style: none;
 
+}
 
+#main-footer .row {
+	display: flex;
+	padding: 20px 0;
+}
 
-
-
-
+#main-footer .row .col-6 {
+	width: 30%;
+	/*margin-top: 10px;*/
+}
