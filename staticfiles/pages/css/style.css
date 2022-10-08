@@ -70,6 +70,9 @@ p {
 	background-color: #fff;
 	color: #fff;
 	overflow: auto;
+    position: fixed;
+    width: -webkit-fill-available;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 #navbar a{
@@ -80,9 +83,10 @@ p {
 	float: left;
 }
 
-#navbar .logo img{
+.logo img{
 	max-width: 70px;
 	padding-top: 5px;
+	border-radius: 50%;
 }
 #navbar h1{
 
@@ -143,6 +147,7 @@ p {
 
 #features h1 {
 	text-align: center;
+	margin-bottom: 30px;
 }
 
 .box-flex {
@@ -158,36 +163,42 @@ p {
 }
 
 .box {
-	width: 33.3%;
+	padding-bottom: 100px;
+	width: 30.3%;
 	margin-left: 33px;
 	text-align: center;
-	border: 1px #395064 solid;
+	/*border: 1px #395064 solid;*/
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-
-
 
 
 /* Home Info */
 #home-info {
-	height: 500px;
+	height: 700px;
 	margin-top: 70px;
-	padding: 50px 5px;
+	padding: 100px 5px;
 	background-color: #fff;
 }
 
+.dd{
+	margin: auto;
+	max-width: 1200px;
+}
 
 #home-info .info-img {
-	width: 40%;
+    height: 450px;
+    width: 60%;
 	background: url('../img/wat.jpg') no-repeat;
 	min-height: 100%;
 	border-radius: 15px;
 }
 
 #home-info .info-content {
-	width: 50%;
+	width: 60%;
 	height: 100%;
-	text-align: center;
+	/*text-align: center;*/
 	padding: 50px 30px;
+	padding-left: 160px;
 	overflow: hidden;
 }
 
@@ -197,6 +208,16 @@ p {
 
 
 /* Footer */
+
+
+#main-footer p, a, h3{
+	color: black;
+}
+
+#main-footer {
+	background-color: #376891;
+}
+
 #main-footer ul {
 	list-style: none;
 
@@ -204,10 +225,34 @@ p {
 
 #main-footer .row {
 	display: flex;
-	padding: 20px 0;
+	padding: 100px 0;
 }
 
 #main-footer .row .col-6 {
-	width: 30%;
+	width: 26%;
 	/*margin-top: 10px;*/
 }
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.7;
+}
+
+.copy-right {
+	background-color: #193e5c;
+	text-align: center;
+	height: 70px;
+	padding-top: 20px;
+}
+
+
+
+
+
