@@ -1,0 +1,51 @@
+{% extends 'googleform/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block body %}
+<div class = "container-fluid">
+    <button class = "btn send-form-btn big-screen" title = "Send" id="send-form-btn">Send</button>
+</div>
+
+
+<div>
+    <div class="side-list">
+    <ul class="list-group">
+
+        <a href="" hx-post="{% url 'add-question' %}" hx-target='#question_details'><li class="list-group-item"><i class="bi bi-plus-circle"></i></li></a>
+        <a href=""><li class="list-group-item"><i class="bi bi-file-earmark-check"></i></li></a></a>
+        <a href=""><li class="list-group-item"><i class="bi bi-type"></i></li></a>
+        <a href=""><li class="list-group-item"><i class="bi bi-image-alt"></i></li></a>
+        <a href=""><li class="list-group-item"><i class="bi bi-play-btn"></i></li></a>
+        <a href=""><li class="list-group-item"><i class="bi bi-layout-split"></i></li></a>
+    </ul>
+</div>
+<div class="mx-auto" style="width: 900px;">
+    
+
+    
+    <div class= 'content-section'>
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class='form-group'>                
+                {{ form|crispy }}
+
+            </fieldset>
+            <div class='form-group'>
+                <button class= 'btn- btn-outline-info' type="submit">Post</button>
+            </div>
+        </form> 
+    </div>
+    {% for question in questions %}
+    <div>
+        <h3>{{ question.title }}</h3>
+        <p>{{ question.description }}</p>
+        <p>{{ question.question_type }}</p>
+    </div>
+    {% endfor %}
+    <div id ="question_details">
+    
+    </div>
+</div>
+</div>
+ {% endblock %}
