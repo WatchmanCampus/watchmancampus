@@ -13,7 +13,7 @@ def home(request):
 
 def create_form(request):
 
-    form = CreateForm
+    form = CreateForm()
     questions = Question.objects.all()
 
     context = {

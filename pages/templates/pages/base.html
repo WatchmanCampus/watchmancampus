@@ -2,12 +2,14 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="welcome to the most exciting church in Nigeria">
 	<meta name="keywords" content="church,nigeria,new nigeria church">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;1,500">
+	<link rel="stylesheet" type="text/css"
+		href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,500;0,700;1,500">
 	<!-- Add icon library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -18,6 +20,7 @@
 	<title>Watchman Campus </title>
 	{% endif %}
 </head>
+
 <body>
 
 	<header>
@@ -26,9 +29,10 @@
 			<div class="container">
 				<div class="logo">
 					<a href="">
-					<img src="{% static 'pages/img/watchman.jpg' %}">
-<!-- 					<p>Watchman Campus Fellowship</p>
- -->				</a>
+						<img src="{% static 'pages/img/watchman.jpg' %}">
+						<!-- 					<p>Watchman Campus Fellowship</p>
+ -->
+					</a>
 				</div>
 				<ul>
 					<li><a class="current" href="{% url 'home-page' %}">Home</a></li>
@@ -50,10 +54,10 @@
 		</div>
 	</header>
 
-	<section id="features" >
+	<section id="features">
 		<h1>Events Happening Now</h1>
 		<div class="box-flex">
-			
+
 			<div class="box bg-light">
 				<img src="{% static 'pages/img/slider1.jpg' %}">
 				<div class="box-body">
@@ -64,8 +68,8 @@
 			<div class="box bg-primary">
 				<img src="{% static 'pages/img/slider2.jpg' %}">
 				<div class="box-body">
-				<h3>Hilltop Encounters</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
+					<h3>Hilltop Encounters</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
 				</div>
 			</div>
 			<div class="box bg-light">
@@ -78,78 +82,95 @@
 		</div>
 	</section>
 
-<!-- A bit about us -->
+	<!-- A bit about us -->
 	<section id="home-info" class="bg-dark">
 		<div class="box-flex dd">
 			<div class="info-img">
-				
+
 			</div>
 			<div class="info-content">
 				<h2><span class="text-primary">About</span> The Ministry</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliqui</p>
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliqui</p>
 				<a class="btn btn-light">Read More</a>
 			</div>
 		</div>
-		
+
+	</section>
+
+	<section class="join-us-section py-5">
+		<div class="join-us">
+			<div class="info-content">
+				<h1>Become A Part of Campus
+					End time Vision and Missions</h1>
+				<p>Mission is the Lord's heartbeat. We have sent life-time missionaries outside the shores of Nigeria
+					and
+					still in the vision to send more! SPONSOR A MISSIONARY TODAY! or SIGN UP</p>
+				<div class="">
+					<a class="btn" href="">become a sponsor</a>
+					<a class="btn" href="">signup as a missionary</a>
+				</div>
+			</div>
+		</div>
 	</section>
 
 
-<!-- Footer Section -->
+	<!-- Footer Section -->
 
-  <footer id="main-footer" class="py-5">
- <div class="container">
-    <div class="row">
-      <div class="col-6">
-        <ul class="nav flex-column">
-        	<h3>CONTACT</h3>
-         <p>KM 3 awomama road </p>
-         <p>Support Line Tel:+2348068351993</p>
-        </ul>
-				<div class="logo">
-					<a href="">
-					<img src="{% static 'pages/img/watchman.jpg' %}">
-				</a>
+	<footer id="main-footer" class="py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-6">
+					<ul class="nav flex-column">
+						<h3>CONTACT</h3>
+						<p>KM 3 awomama road </p>
+						<p>Support Line Tel:+2348068351993</p>
+					</ul>
+					<div class="logo">
+						<a href="">
+							<img src="{% static 'pages/img/watchman.jpg' %}">
+						</a>
+					</div>
 				</div>
-      </div>
 
-      <div class="col-6">
-        <h3>ABOUT US</h3>
-        <ul class="nav flex-column">
-          <li ><a href="#">Core Values</a></li>
-          <li ><a href="#">Mission</a></li>
-          <li ><a href="#"></a></li>
-          <li ><a href="#">FAQs</a></li>
-          <li ><a href="#">About</a></li>
-        </ul>
-      </div>
+				<div class="col-6">
+					<h3>ABOUT US</h3>
+					<ul class="nav flex-column">
+						<li><a href="#">Core Values</a></li>
+						<li><a href="#">Mission</a></li>
+						<li><a href="#"></a></li>
+						<li><a href="#">FAQs</a></li>
+						<li><a href="#">About</a></li>
+					</ul>
+				</div>
 
-      <div class="col-6">
-        <h3>EVENTS</h3>
-        <ul class="nav flex-column">
-          <li ><a href="#">Past Events</a></li>
-          <li ><a href="#">Upcoming Events</a></li>
-          <li ><a href="#">Retreats and Confrences</a></li>
-          <li ><a href="#">Event</a></li>
-        </ul>
-      </div>
+				<div class="col-6">
+					<h3>EVENTS</h3>
+					<ul class="nav flex-column">
+						<li><a href="#">Past Events</a></li>
+						<li><a href="#">Upcoming Events</a></li>
+						<li><a href="#">Retreats and Confrences</a></li>
+						<li><a href="#">Event</a></li>
+					</ul>
+				</div>
 
-      <div >
-          <h3>CONNECT WITH US</h3>
-			      <div class="box-flex">
-			        <a href="#" class="fa fa-facebook" target="_blank"></a>
-			        <a href="#" class="fa fa-twitter" target="_blank"></a>
-			        <a href="https://www.youtube.com/c/WatchmanCampus" target="_blank"class="fa fa-youtube"></a>
-			      </div>
-      </div>
-    </div>
-   </div> 
-     <div class="copy-right">
-      <p>&copy; 2022 WCCCF. All rights reserved.</p>
+				<div>
+					<h3>CONNECT WITH US</h3>
+					<div class="box-flex">
+						<a href="#" class="fa fa-facebook" target="_blank"></a>
+						<a href="#" class="fa fa-twitter" target="_blank"></a>
+						<a href="https://www.youtube.com/c/WatchmanCampus" target="_blank" class="fa fa-youtube"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="copy-right">
+			<p>&copy; 2022 WCCCF. All rights reserved.</p>
 
-    </div>
-  </footer>
+		</div>
+	</footer>
 
 </body>
+
 </html>

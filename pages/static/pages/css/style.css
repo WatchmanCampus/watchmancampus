@@ -206,7 +206,35 @@ p {
 	padding-bottom: 30px;
 }
 
+/* join us */
+.join-us-section {
+	height: 700px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+}
+.join-us {
+	background: url('../img/gs.png')  no-repeat center center/cover;
+	height: 25em;
+	padding: 25px 320px 0 320px;
+}
 
+.join-us .info-content {
+	text-align: center;
+    margin: 0 auto;
+}
+
+.join-us .info-content h1{
+	font-size: 55px;
+	font-weight: 900;
+	line-height: 1.5;
+}
+
+.join-us .info-content p{
+	font-size: 15px;
+	margin-bottom: 30px;
+}
 /* Footer */
 
 
