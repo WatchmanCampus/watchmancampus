@@ -1,0 +1,312 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.104.2">
+  <title>Album example · Bootstrap v5.2</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/album/">
+
+  <link href="{% static 'pages/assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'pages/css/boot.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img width="50" height="50" src="{% static 'pages/img/watchman.png' %}" alt="logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 bb">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Testify</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ministries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Campuses</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="" role="search">
+              <ul class="navbar-nav custom-flex">
+                <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-twitter"></i></a></li>
+                <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-instagram"></i></a></li>
+                <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-facebook"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+  </header>
+
+  <main>
+
+    <section class="py-5 text-center container custom-header ">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto text-white w-75 ">
+          <p class="lead text-uppercase text-light">watchman catholic charismatic campus fellowship</p>
+          <h1 class="fw-light display-1 fw-bold text-light">THIS IS THE DAY OF THE LORD</h1>
+          <p>
+            <a href="#" class="btn btn-primary my-2">About Our Ministry</a>
+            <a href="#" class="btn btn-secondary my-2">Hilltop Encounters</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light mt-5">
+      <div class="container text-center">
+        <div class="mb-5 text-center custom-event w-20">
+
+          <h2 class="text-capitalize">Events coming up</h2>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam dignissimos debitis tempora minus earum
+            ducimus, dolore ipsam eveniet quas quo.</p>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <h5 class="card-title text-capitalize mb-3">hilltop encounters</h5>
+            <div class="card shadow-sm">
+              <img height="350" src="{% static 'pages/img/hilltop.jpeg' %}" alt="">
+
+              <div class="card-body">
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+                <div class="d-flex fw-bold">
+                  <span>Date: </span>
+                  <p> 6th -9th October 2022</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Read More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h5 class="card-title text-capitalize mb-3">amasong stage-play</h5>
+            <div class="card shadow-sm">
+              <img height="350" src="{% static 'pages/img/amasong.jpeg' %}" alt="">
+              <div class="card-body">
+                <p class="card-text">A Stage Play/Opera By Watchman Catholic Charismatic Campus Fellowship, CRUTHECH
+                  Calabar. Tagged AMANISONG (The Son Of The Soil)
+                  A Must-Watch By All, Hitting Your Screens Live</p>
+                <div class="d-flex fw-bold">
+                  <span>Date: </span>
+                  <p> 6th -9th October 2022</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Read More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <h5 class="card-title text-capitalize mb-3">corpers convention</h5>
+            <div class="card shadow-sm">
+              <img height="350" src="{% static 'pages/img/corpers.jpeg' %}" alt="">
+              <div class="card-body">
+                <p class="card-text">The Watchman Catholic Charismatic Corpers Fellowship presents the 6th Annual Corps
+                  members Convention!
+                  Theme: They Who Know Their God
+                  There will be Seminars, Symposiums, Holy Ghost-filled ministrations, and lots more.
+                </p>
+                <div class="d-flex fw-bold">
+                  <span>Date: </span>
+                  <p> 6th -9th October 2022</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Read More</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- START THE FEATURETTES -->
+    <div class="container features">
+
+      <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+          <div class="col">
+            <img src="{% static 'pages/img/wat.jpg' %}" class="d-block mx-lg-auto img-fluid" alt="about the ministry"
+              loading="lazy">
+          </div>
+          <div class="col-lg-6 ">
+            <h1 class="display-5 fw-bold lh-1 mb-3">About The Ministry</h1>
+            <p class="lead text-justify">he Fellowship was formally inaugurated in 1990 with the mandate to prosecute
+              the vision of
+              the
+              Watchman Catholic Charismatic Renewal Movement in the higher institutions of learning.
+            </p>
+            <p class="lead mt-3 text-left">Also, by virtue of her area of operation as a ministry for the higher
+              institutions
+              community,
+              she is naturally conferred with
+              the responsibility of raising an appropriate workforce for the various fronts of the Watchman ministry.
+              here.</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Read More</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row featurette m-custom">
+        <div class="col">
+          <img height="288" width="355" src="{% static 'pages/img/slider3.jpg' %}" alt="">
+
+
+        </div>
+        <div class="col-md-7 mt-3 p-custom ">
+          <h2 class="featurette-heading fw-normal lh-1">Share with us your Joy</h2>
+          <p class="lead mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum at reprehenderit rem
+            obcaecati! Deserunt eum consequatur officia, iure culpa id!.</p>
+        </div>
+
+      </div>
+
+      <!-- /END THE FEATURETTES -->
+    </div>
+
+    <div class="px-4 pt-5 my-5 text-center">
+      <h1 class="display-4 text-capitalize">Become part of the campus vision</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Mission is the Lord's heartbeat. We have sent life-time missionaries outside the shores of
+          Nigeria and still in the vision to send more! SPONSOR A MISSIONARY TODAY! or SIGN UP</p>
+        <div class="d-flex gap-2 d-sm-flex justify-content-sm-center mb-5">
+          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Become a sponsor</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">signup as a missionary</button>
+        </div>
+      </div>
+      <div class="overflow-hidden" style="max-height: 30vh;">
+        <div class="container px-5">
+          <img src="{% static 'pages/img/slider1.jpg' %}" class="img-fluid border rounded-3 shadow-lg mb-4"
+            alt="Example image" width="700" height="500" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+
+
+  <div class="container bg-primary footer-custom">
+
+    <footer class="py-5 main-footer">
+      <div class="row py-3">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Contact Details</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i
+                  class="bi bi-geo-alt-fill px-2"></i>KM 24 Onitsha-Owerri Expressway, Awo-Omamma, Imo State Nigeria
+              </a>
+            </li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i
+                  class="bi bi-telephone-fill"></i>+234-806-8351-993</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i
+                  class="bi bi-envelope-fill"></i>info@watchmancampus.org</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i
+                  class="bi bi-globe2 px-2"></i>www.wcccfonline.com</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>About Us</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Categories</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Articles</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Confrences</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">General Blog Posts</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Hilltop 2022</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">News</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <p>&copy; 2022 Watchman Catholic Charismatic Campus Fellowship. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-twitter"></i></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-instagram"></i></a></li>
+          <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-facebook"></i></a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+  <script src="{% static 'pages/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+
+</body>
+
+</html>
