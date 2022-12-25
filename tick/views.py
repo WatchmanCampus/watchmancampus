@@ -13,6 +13,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 # Create your views here.
 
 
+def home_page(request):
+    return render(request, "tick/index.html", {})
+
 def home(request):
     return render(request, 'tick/home.html', {'title': 'home'})
 

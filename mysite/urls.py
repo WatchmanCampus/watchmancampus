@@ -21,8 +21,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pages.urls')),
-    path('form/', include('googleform.urls')),
+    path('', include('tick.urls')),
 ]
 
 if settings.DEBUG:

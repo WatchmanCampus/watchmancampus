@@ -1,12 +1,13 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, PreviewTicket, PostDetailView, PostUpdateView, PostDeleteView, \
+from .views import home_page, PreviewTicket, PostDetailView, PostUpdateView, PostDeleteView, \
     PostCreateView, PostListView
 
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='home'),
+    path('', home_page, name='home-page'),
+    path('posts', PostListView.as_view(), name='home'),
     # path('register/', TickCreateView, name='register'),
     path('preview/<str:ref>', PreviewTicket, name='preview'),
     path('post/<int:pk>/', PostDetailView, name='post-detail'),
