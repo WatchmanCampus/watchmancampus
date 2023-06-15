@@ -94,20 +94,3 @@ class Hostel(models.Model):
     def __str__(self):
         return f'{ self.name } Hostel'
 
-
-# class Form(models.Model):
-#     created_at = models.DateTimeField()
-#     color = models.CharField()
-
-
-# base64
-
-# class CharsField(models.Model):
-#     form = models.ForeignKey(Form)
-#     field = models.CharField()
-
-# class Boolean(models.Model):
-#     form = model.ForeignKey(Form)
-#     name = models.CharField()
-#     description = models.CharField()
-#     field = models.BooleanField(default=False)
