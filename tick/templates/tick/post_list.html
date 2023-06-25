@@ -1,0 +1,21 @@
+{% extends "tick/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container text-center">
+    <div class="row">
+    {% for post in posts %}
+      <div class="col mb-5 mt-5">
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="{% url 'post-detail' post.id %}" class="btn btn-primary">Register</a>
+            </div>
+          </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock content %}

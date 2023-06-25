@@ -79,45 +79,6 @@ class PostListView(ListView):
     paginate_by = 10
 
 
-# class PostDetailView(DetailView):
-#     model = Post
-#     context_object_name = 'post'
-
-
-# def PostDetailView(request):
-#     # user = get_object_or_404(User, username=request.user)
-#     if request.method == "POST":
-#         form = TickRegisterForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             FeedPost.objects.create(
-#                 author=request.user,
-#                 message=form.cleaned_data["message"],
-#                 image=form.cleaned_data["image"],
-#                 # is_private=form.cleaned_data["is_private "],
-#                 # category_tags = form.cleaned_data['category_tags'],
-#             )
-#             messages.info(request, "Your request has been sent.")
-#             return redirect("home")
-#     else:
-#         form = FeedPostCreateForm()
-
-#     queryset = FeedPost.objects.all()
-#     paginator = Paginator(queryset, 1)
-#     page = request.GET.get("page", 1)
-#     try:
-#         paginated_queryset = paginator.page(page)
-#     except PageNotAnInteger:
-#         paginated_queryset = paginator.page(1)
-#     except EmptyPage:
-#         paginated_queryset = paginator.page(paginator.num_pages)
-#     context = {
-#         "post": paginated_queryset,
-#         "form": form,
-#     }
-
-#     return render(request, "post/user_feed.html", context)
-
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'description']

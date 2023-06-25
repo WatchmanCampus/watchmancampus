@@ -167,3 +167,4 @@ cython_debug/
 staticfiles
 .envs/*
 !.envs/.local/
+media/
