@@ -10,7 +10,6 @@ from .models import Tick, Post
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-# Create your views here.
 
 
 def home_page(request):
@@ -18,7 +17,6 @@ def home_page(request):
 
 def home(request):
     return render(request, 'tick/home.html', {'title': 'home'})
-
 
 def PostDetailView(request, pk):
     post = Post.objects.get(pk=pk)
@@ -30,35 +28,64 @@ def PostDetailView(request, pk):
             new.ref = ref
             new.post = post
             new.save()
-            form.save_m2m()
-            first_name = form.cleaned_data.get('first_name')
-            last_name = form.cleaned_data.get('last_name')
-            email = form.cleaned_data.get('email')
-            gender = form.cleaned_data.get('gender')
-            diocese = form.cleaned_data.get('diocese')
-
-            ref = generate_ticket(first_name, last_name, gender, diocese, ref)
-            response = email_sending(
-                to_mail=email, 
-                firstname=first_name, 
-                lastname=last_name, 
-                location=post.location, 
-                time=post.start_date,
-                ref=ref
-
-            )
-            if response == True:
-                return redirect('preview', ref=ref)
-            else:
-                return redirect('preview', ref=ref)
+            return redirect('payment', new.pk)
     else:
         form = TickRegisterForm()
-
     context = {
         "post": post,
         "form": form,
     }
+
     return render(request, 'tick/post_detail.html', context)
+
+def Payment(request, pk):
+    ticket = Tick.objects.get(pk=pk)
+    if request.method == 'POST':
+        pass
+    context = {"ticket": ticket}
+
+    return render(request, 'tick/payment.html', context)
+    
+    
+# def PostDetailView(request, pk):
+#     post = Post.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = TickRegisterForm(request.POST)
+#         if form.is_valid():
+#             ref = my_random_string()
+#             new = form.save(commit=False)  # Create, but don't save the new instance.
+#             new.ref = ref
+#             new.post = post
+#             new.save()
+#             form.save_m2m()
+#             first_name = form.cleaned_data.get('first_name')
+#             last_name = form.cleaned_data.get('last_name')
+#             email = form.cleaned_data.get('email')
+#             gender = form.cleaned_data.get('gender')
+#             diocese = form.cleaned_data.get('diocese')
+
+#             ref = generate_ticket(first_name, last_name, gender, diocese, ref)
+#             response = email_sending(
+#                 to_mail=email, 
+#                 firstname=first_name, 
+#                 lastname=last_name, 
+#                 location=post.location, 
+#                 time=post.start_date,
+#                 ref=ref
+
+#             )
+#             if response == True:
+#                 return redirect('preview', ref=ref)
+#             else:
+#                 return redirect('preview', ref=ref)
+#     else:
+#         form = TickRegisterForm()
+
+#     context = {
+#         "post": post,
+#         "form": form,
+#     }
+#     return render(request, 'tick/post_detail.html', context)
 
 
 def PreviewTicket(request, ref):
@@ -112,14 +139,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-
-
-# class UserPostListView(ListView):
-#     model = Post
-#     template_name = 'blog/user_posts.html'
-#     context_object_name = 'post'
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         user = get_object_or_404(User, username=self.kwargs.get('username'))
-#         return Post.objects.filter(author=user).order_by('-date_posted')

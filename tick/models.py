@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
+from mysite.constants.others import PAYMENT_METHODS, PAYMENT_PROVIDER, TRANSACTION_STATUSES
 
 # Create your models here.
 
@@ -95,3 +96,28 @@ class Hostel(models.Model):
     def __str__(self):
         return f'{ self.name } Hostel'
 
+
+class Transaction(models.Model):
+    transaction_ref = models.CharField(max_length=100, null=False, blank=False)
+    # cart = models.OneToOneField(Cart, null=False, blank=False, on_delete=models.CASCADE)
+    payment_method = models.CharField(
+        max_length=50, choices=PAYMENT_METHODS, null=False, blank=False
+    )
+    payment_provider = models.CharField(
+        max_length=50, choices=PAYMENT_PROVIDER, null=False, blank=False
+    )
+    discount = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
+    vat = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
+    total_price = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
+    verified = models.BooleanField(default=False)
+    transaction_status = models.CharField(
+        max_length=200,
+        choices=TRANSACTION_STATUSES,
+        null=True,
+        blank=True,
+        default="Pending Payment",
+    )
+    transaction_description = models.CharField(max_length=200, null=True, blank=True)
+
+    def __str__(self):
+        return self.cart.user.get_full_name + " - " + self.transaction_ref
