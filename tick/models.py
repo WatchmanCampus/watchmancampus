@@ -49,6 +49,7 @@ class Post(models.Model):
     banner = models.ImageField(null=True, blank=True)
     ticket_available = models.IntegerField(default=0)
     ticket_type = models.CharField(default='Free', max_length=50, choices=TICKET_TYPE)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
         return self.title
@@ -99,7 +100,7 @@ class Hostel(models.Model):
 
 class Transaction(models.Model):
     transaction_ref = models.CharField(max_length=100, null=False, blank=False)
-    # cart = models.OneToOneField(Cart, null=False, blank=False, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(Tick, null=False, blank=False, on_delete=models.CASCADE)
     payment_method = models.CharField(
         max_length=50, choices=PAYMENT_METHODS, null=False, blank=False
     )

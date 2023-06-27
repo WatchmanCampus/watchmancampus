@@ -1,26 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TickRegisterForm
-from PIL import Image, ImageFont, ImageDraw
 from django.contrib import messages
 from .utils import generate_ticket, my_random_string, email_sending
-from .models import Tick, Post
-
+from .models import Tick, Post, Transaction
+from .payments import verify_transaction, initiate_rave_url
 
 # from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 
 def home_page(request):
     return render(request, "tick/index.html", {})
 
+
 def home(request):
-    return render(request, 'tick/home.html', {'title': 'home'})
+    return render(request, "tick/home.html", {"title": "home"})
+
 
 def PostDetailView(request, pk):
     post = Post.objects.get(pk=pk)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = TickRegisterForm(request.POST)
         if form.is_valid():
             ref = my_random_string()
@@ -28,7 +34,7 @@ def PostDetailView(request, pk):
             new.ref = ref
             new.post = post
             new.save()
-            return redirect('payment', new.pk)
+            return redirect("payment", new.pk)
     else:
         form = TickRegisterForm()
     context = {
@@ -36,17 +42,44 @@ def PostDetailView(request, pk):
         "form": form,
     }
 
-    return render(request, 'tick/post_detail.html', context)
+    return render(request, "tick/post_detail.html", context)
 
-def Payment(request, pk):
-    ticket = Tick.objects.get(pk=pk)
-    if request.method == 'POST':
-        pass
+
+def Payment(request, ticket_id):
+    ticket = get_object_or_404(Tick, id=ticket_id)
+    if request.method == "POST":
+        transaction_ref = my_random_string()
+        transaction, created = Transaction.objects.update_or_create(
+            ticket=ticket,
+            defaults={
+                "transaction_ref": transaction_ref,
+                "payment_provider": "payment_rave",
+                "total_price": ticket.post.price,
+            },
+        )
+        server_url = "localhost:8000"  # get_secret("SERVER_URL")
+        callback_url = f"{server_url}/ticket/verify/transaction/{transaction.id}"
+        response = initiate_rave_url(
+            email=ticket.email,
+            amount=int(
+                transaction.total_price * 100
+            ),  # convert to lowest unit and integer
+            transaction_ref=transaction_ref,
+            currency="NGN",
+            callback_url=callback_url,
+        )
+        try:
+            rave_url = response["data"]["link"]
+            return redirect(rave_url)
+        except Exception:
+            messages.warning(request, f"Your transaction {response['message']}")
+            return redirect("post-detail", ticket.id)
+
     context = {"ticket": ticket}
 
-    return render(request, 'tick/payment.html', context)
-    
-    
+    return render(request, "tick/payment.html", context)
+
+
 # def PostDetailView(request, pk):
 #     post = Post.objects.get(pk=pk)
 #     if request.method == 'POST':
@@ -66,10 +99,10 @@ def Payment(request, pk):
 
 #             ref = generate_ticket(first_name, last_name, gender, diocese, ref)
 #             response = email_sending(
-#                 to_mail=email, 
-#                 firstname=first_name, 
-#                 lastname=last_name, 
-#                 location=post.location, 
+#                 to_mail=email,
+#                 firstname=first_name,
+#                 lastname=last_name,
+#                 location=post.location,
 #                 time=post.start_date,
 #                 ref=ref
 
@@ -95,20 +128,20 @@ def PreviewTicket(request, ref):
     # else:
     #     messages.success(request, f'Success. A ticket was sent to {ticket.email}')
 
-    return render(request, 'tick/preview.html', {'ticket': ticket})
+    return render(request, "tick/preview.html", {"ticket": ticket})
 
 
 class PostListView(ListView):
     model = Post
-    template_name = 'tick/home.html'
-    context_object_name = 'posts'
-    ordering = ['-start_date']
+    template_name = "tick/home.html"
+    context_object_name = "posts"
+    ordering = ["-start_date"]
     paginate_by = 10
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'description']
+    fields = ["title", "description"]
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -117,7 +150,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'description']
+    fields = ["title", "description"]
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -132,7 +165,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = "/"
 
     def test_func(self):
         post = self.get_object()
