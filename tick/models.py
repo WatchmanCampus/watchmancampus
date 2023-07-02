@@ -119,6 +119,3 @@ class Transaction(models.Model):
         default="Pending Payment",
     )
     transaction_description = models.CharField(max_length=200, null=True, blank=True)
-
-    def __str__(self):
-        return self.cart.user.get_full_name + " - " + self.transaction_ref

@@ -1,1 +1,20 @@
+{% extends "tick/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
 Payment Page with fluterwave
+<h1>{{ ticket.post.price }}</h1>
+<div class= 'content-section'>
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class='form-group'>
+        
+        {{ form|crispy }}
+
+      </fieldset>
+      <div class='form-group mt-5 mb-4'>
+        <button class= 'btn btn-outline-info' type="submit">Pay</button>
+      </div>
+    </form> 
+  </div>
+
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Tick, Post
+from .models import Tick, Post, Transaction
 
 
 class TickRegisterForm(forms.ModelForm):
@@ -22,3 +22,9 @@ class PostForm(forms.ModelForm):
         exclude = [
             "created_at"     
         ]
+
+class PaymentForm(forms.ModelForm):
+
+    class Meta:
+        model = Transaction
+        fields = ["payment_method", "payment_provider"]

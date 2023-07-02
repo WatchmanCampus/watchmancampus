@@ -3,7 +3,7 @@ import json
 import requests
 
 
-def initiate_rave_url(name, email, transaction_ref, amount, callback_url):
+def initiate_rave_url(currency, email, transaction_ref, amount, callback_url):
     url = " https://api.flutterwave.com/v3/payments"
     headers = {
         "Content-Type": "application/json",
@@ -12,7 +12,7 @@ def initiate_rave_url(name, email, transaction_ref, amount, callback_url):
     data = {
         "tx_ref": transaction_ref,
         "amount": amount,
-        "currency": "NGN",
+        "currency": currency,
         "redirect_url": callback_url,
         "payment_options": "card",
         # "meta": {"consumer_id": 23, "consumer_mac": "92a3-912ba-1192a"},
@@ -33,6 +33,17 @@ def initiate_rave_url(name, email, transaction_ref, amount, callback_url):
     # link = response["data"]["link"]
     # return link
 
+def verify_rave(transaction_ref):
+    url = f"https://api.flutterwave.com/v3/transactions/verify_by_reference?tx_ref={transaction_ref}"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {settings.PAYSTACK_SECRET_KEY}",
+    }
+    payload = {}
+    response = requests.get(url, headers=headers, json=payload)
+    print(response.text)
+    print("this is second", response.content)
+    return json.loads(response.content)
 
 def initiate_paystack_url(email, amount, transaction_ref, currency, callback_url):
     url = "https://api.paystack.co/transaction/initialize"
@@ -56,7 +67,7 @@ def initiate_paystack_url(email, amount, transaction_ref, currency, callback_url
     # context = {"response" : response['data']['authorization_url']}
 
 
-def verify_transaction(transaction_ref):
+def verify_paystack(transaction_ref):
     url = f"https://api.paystack.co/transaction/verify/{transaction_ref}"
 
     headers = {
