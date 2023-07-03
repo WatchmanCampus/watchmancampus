@@ -1,4 +1,3 @@
-from PIL import Image, ImageFont, ImageDraw
 from .models import Tick, Hostel
 import uuid
 from django.core.mail import EmailMessage
@@ -10,55 +9,48 @@ def my_random_string(string_length=10):
     random = str(uuid.uuid4())  # Convert UUID format to a Python string.
     random = random.lower()  # Make all characters uppercase.
     random = random.replace("-", "")  # Remove the UUID '-'.
-    #usage  = '%s-%s'%('TR',my_random_string(6))
+    # usage  = '%s-%s'%('TR',my_random_string(6))
     return random[0:string_length]  # Return the random string.
 
 
-def generate_ticket(firstname, lastname, gender, diocese, ref):
-    fullname = f'{firstname} {lastname}'
-    ticket = Tick.objects.get(ref=ref)
-    hostel = Hostel.objects.filter(gender_type=gender, hostel_class='Regular', is_available=True)[0]
-    hostel.booked.add(ticket.id)
-    hostel.rooms_available -= 1
-    hostel.save()
-
-    img = Image.open('hilltop.jpg')
-    font = ImageFont.truetype("arial.ttf", 30)
-    edited = ImageDraw.Draw(img)
-    edited.text((300, 300), fullname, (247, 19, 7), font=font)
-    edited.text((300, 350), diocese, (247, 19, 7), font=font)
-    edited.text((300, 400), hostel.name, (247, 19, 7), font=font)
-    img_name = f'media/{firstname}-{ref}.jpg'
-    img.save(img_name)
-    img = Image.open(img_name)
-    ticket.img = f'{firstname}-{ref}.jpg'
-    ticket.save()
-
-    return ticket.ref
+def generate_ticket(ticket_id):
+    pass
 
 
 def email_sending(to_mail, firstname, lastname, location, time, ref):
-    body = f'''Hello {firstname}, {lastname}This is a confirmation of your ticket for Hilltop Encounters 2022
-    Ticket Summary
-    IN-PERSON CONFERENCE
-    Time: {time}
-    Location: {location}
+    body = f"""
+    <html>
+    <head></head>
+    <body>
+        <p><strong>Hello {firstname}, {lastname}</strong></p>
+        <p>This is a confirmation of your ticket for Hilltop Encounters 2022</p>
+        <h2>Ticket Summary</h2>
+        <p>IN-PERSON CONFERENCE</p>
+        <p><strong>Time:</strong> 2023-06-16 05:49:49+00:00</p>
+        <p><strong>Location:</strong>  Awo mamma</p>
+        <p> The Printable PDF ticket has been attached to this mail.</p>
+        <p>Note: Remember to either have a printed copy or a downloaded copy of the ticket when going for the event as you might need to present it for Confirmation and or Check-in.</p>
+        <p>Going with Friends is fun</p>
+        
+        <p>Let your friends know you are going</p>
+        
+        <p>for more info, visit the
+        <a href='https://www.watchmancampus.org/'>watchman campus website</a>.
 
-    The Printable PDF ticket has been attached to this mail.
-
-    Note: Remember to either have a printed copy or a downloaded copy of the ticket when going for the event as you might need to present it for Confirmation and or Check-in.
-    Going with Friends is fun
-
-    Let your friends know you are going
-    '''
+    </body>
+    </html>
+    """
     try:
         message = EmailMessage(
-            subject = 'Here is your ticket for Hilltop Encounters 2022',
-            body = body,
-            from_email = 'captainvee7@gmail.com',
-            to = [to_mail, 'captainvee3@gmail.com', ],
+            subject="A Snapshot of Friendly Advice!", #"Your ticket for Hilltop Encounters 2023",
+            body=body,
+            from_email="captainvee7@gmail.com",
+            to=[
+                to_mail, "mosesvictor2015@gmail.com"
+            ],
         )
-        message.attach_file(f'media/{firstname}-{ref}.jpg')
+        message.content_subtype = "html"
+        message.attach_file(f"media/{firstname}-{ref}.jpg")
         message.send(fail_silently=False)
     except:
         return False

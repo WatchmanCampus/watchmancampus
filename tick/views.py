@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import TickRegisterForm, PaymentForm
 from django.contrib import messages
 from .utils import generate_ticket, my_random_string, email_sending
-from .models import Tick, Post, Transaction
+from .models import Tick, Post, Transaction, Hostel
 from .payments import verify_rave, initiate_rave_url
-
+from PIL import Image, ImageFont, ImageDraw
 # from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import (
@@ -25,10 +25,9 @@ def home(request):
 
 
 def PostDetailView(request, pk):
-    print("dfdfdf")
     post = Post.objects.get(pk=pk)
+    ticker = Tick.objects.first()
     if request.method == "POST":
-        print("ooooooooo")
         form = TickRegisterForm(request.POST)
         if form.is_valid():
             ref = my_random_string()
@@ -38,14 +37,15 @@ def PostDetailView(request, pk):
             ticket.ref = ref
             ticket.post = post
             ticket.save()
-            print("khkhkkhk")
-            return redirect("ticket-payment", ticket.pk)
+            return redirect("preview", ticket.id)
+            # return redirect("ticket-payment", ticket.pk)
         else:
             errors = form.errors
             print(errors)
     else:
         form = TickRegisterForm()
     context = {
+        "ticket": ticker,
         "post": post,
         "form": form,
     }
@@ -87,7 +87,7 @@ def Payment(request, ticket_id):
     else:
         form = PaymentForm()
 
-    context = {"ticket": ticket, "form":form}
+    context = {"ticket": ticket, "form": form}
 
     return render(request, "tick/payment.html", context)
 
@@ -108,6 +108,48 @@ def verify_transaction(request, transaction_id):
         transaction.save()
 
     return redirect("preview", transaction.ticket.id)
+
+
+def PreviewTicket(request, ticket_id):
+    ticket = Tick.objects.get(id=ticket_id)
+    try:
+        hostel = Hostel.objects.filter(gender_type=ticket.gender, hostel_class='Regular', is_available=True)[0]
+        hostel.booked.add(ticket.id)
+        hostel.rooms_available -= 1
+        hostel.save()
+
+        img = Image.open('hilltop.jpg')
+        font = ImageFont.truetype("Arial.ttf", 30)
+        edited = ImageDraw.Draw(img)
+        edited.text((300, 300), f'{ticket.first_name} {ticket.last_name}', (247, 19, 7), font=font)
+        edited.text((300, 350), ticket.diocese, (247, 19, 7), font=font)
+        edited.text((300, 400), hostel.name, (247, 19, 7), font=font)
+        img_name = f'media/{ticket.first_name}-{ticket.ref}.jpg'
+        img.save(img_name)
+        # imgy = Image.open(img_name)
+        ticket.img = f'{ticket.first_name}-{ticket.ref}.jpg'
+        ticket.save()
+        try:
+            email_sent = email_sending(
+                to_mail=ticket.email,
+                firstname=ticket.first_name,
+                lastname=ticket.last_name,
+                location=ticket.post.venue,
+                time=ticket.post.start_date,
+                ref=ticket.ref,
+            )
+            if email_sent is True:
+                messages.success(request, f"Your have successfully registered for hilltop please check your mail for more info")
+                return redirect("post-detail", ticket.id)
+        except:
+            messages.error(request, f"There was a problem processing your ticket to your mail, contact support")
+            return redirect("post-detail", ticket.id)
+
+        return render(request, "tick/preview.html", {"ticket": ticket})
+    except Exception as e:
+        print(str(e))
+        messages.error(request, f"There was a problem with your request")
+        return redirect("post-detail", ticket.id)
 
 
 # def PostDetailView(request, pk):
@@ -149,16 +191,6 @@ def verify_transaction(request, transaction_id):
 #         "form": form,
 #     }
 #     return render(request, 'tick/post_detail.html', context)
-
-
-def PreviewTicket(request, ticket_id):
-    ticket = Tick.objects.get(id=ticket_id)
-    # if error == True:
-    #     messages.warning(request, f'Failed to send ticket to {ticket.email}, please ensure you download your ticket below')
-    # else:
-    #     messages.success(request, f'Success. A ticket was sent to {ticket.email}')
-
-    return render(request, "tick/preview.html", {"ticket": ticket})
 
 
 class PostListView(ListView):

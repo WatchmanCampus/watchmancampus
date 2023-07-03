@@ -112,6 +112,7 @@
           <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Register
           </button>
+          <a href="{% url 'preview' ticket.id %}" class="btn btn-primary">Preview</a>
         </div>
         </div>
 
@@ -128,11 +129,6 @@
   </div>
 
 </div>
-
-
-
-
-
 
 {% endblock content %}
 
