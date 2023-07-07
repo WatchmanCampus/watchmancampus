@@ -57,6 +57,13 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
+class Institution(models.Model):
+    state = models.CharField(max_length=250, blank=False, null=False)
+    school = models.CharField(max_length=500, blank=False, null=False)
+
+    def __str__(self) -> str:
+        return self.school
+
 
 class Tick(models.Model):
     post = models.ForeignKey(Post, on_delete= models.CASCADE, null=True, blank=True)
@@ -67,7 +74,7 @@ class Tick(models.Model):
     middle_name = models.CharField(null=True, blank=True, max_length=100)
     gender = models.CharField(null=False, blank=False, max_length=10, choices=GENDER)
     phone = models.CharField(null=False, blank=False, unique=True, max_length=15)
-    institution = models.CharField(null=True, blank=True, max_length=300)
+    institution = models.ForeignKey(Institution, null=True, blank=True, on_delete=models.CASCADE)
     diocese = models.CharField(null=True, blank=True, max_length=100)
     parish = models.CharField(null=True, blank=True, max_length=100)
     are_you_a_Watchman = models.CharField(null=False, blank=False, max_length=10, choices=YES_OR_NO)
